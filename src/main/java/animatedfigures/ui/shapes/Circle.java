@@ -1,6 +1,4 @@
-package animatedfigures.ui.figures.shapes;
-
-import animatedfigures.ui.figures.SimpleShapeBase;
+package animatedfigures.ui.shapes;
 
 import java.awt.*;
 
@@ -22,8 +20,14 @@ public class Circle extends SimpleShapeBase {
         this.radius *= factor;
     }
 
-    public int getRadius() {
-        return this.radius;
+    @Override
+    public int getWidth() {
+        return this.radius * 2;
+    }
+
+    @Override
+    public int getHeight() {
+        return this.radius * 2;
     }
 
     public void setRadius(int radius) {

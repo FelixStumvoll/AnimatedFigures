@@ -1,4 +1,4 @@
-package animatedfigures.ui.figures.base;
+package animatedfigures.ui.shapes.base;
 
 import java.awt.*;
 
@@ -12,10 +12,6 @@ public interface SimpleShape extends Shape {
         this.setX(this.getX() + xMove);
         this.setY(this.getY() + yMove);
     }
-
-    int getX();
-
-    int getY();
 
     void setX(int value);
 

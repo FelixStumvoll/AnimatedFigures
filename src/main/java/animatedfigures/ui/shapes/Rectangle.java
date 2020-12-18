@@ -1,6 +1,4 @@
-package animatedfigures.ui.figures.shapes;
-
-import animatedfigures.ui.figures.SimpleShapeBase;
+package animatedfigures.ui.shapes;
 
 import java.awt.*;
 
@@ -25,6 +23,7 @@ public class Rectangle extends SimpleShapeBase {
         this.height *= factor;
     }
 
+    @Override
     public int getWidth() {
         return this.width;
     }
@@ -33,6 +32,7 @@ public class Rectangle extends SimpleShapeBase {
         this.width = width;
     }
 
+    @Override
     public int getHeight() {
         return this.height;
     }

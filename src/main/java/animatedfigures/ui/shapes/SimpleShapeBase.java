@@ -1,18 +1,17 @@
-package animatedfigures.ui.figures;
+package animatedfigures.ui.shapes;
 
-import animatedfigures.ui.figures.base.SimpleShape;
+import animatedfigures.ui.shapes.base.Shape;
+import animatedfigures.ui.shapes.base.SimpleShape;
 
 import java.awt.*;
 
-public abstract class SimpleShapeBase implements SimpleShape {
+public abstract class SimpleShapeBase implements SimpleShape, Shape {
     private Color color;
     private int x;
     private int y;
 
     public SimpleShapeBase(Color color, int x, int y) {
         this.color = color;
-        this.x = x;
-        this.y = y;
     }
 
     @Override

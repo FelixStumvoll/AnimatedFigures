@@ -11,7 +11,7 @@ public class App implements Runnable {
         var frame = new JFrame("Animated Figures");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane()
-                .add(new MainPanel());
+                .add(new MainPanel(size));
         frame.setSize(size.first(), size.second());
         frame.setResizable(false);
         frame.setVisible(true);
