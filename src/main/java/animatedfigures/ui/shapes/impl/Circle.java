@@ -1,4 +1,6 @@
-package animatedfigures.ui.shapes;
+package animatedfigures.ui.shapes.impl;
+
+import animatedfigures.ui.shapes.impl.base.SimpleShapeBase;
 
 import java.awt.*;
 
@@ -22,8 +24,8 @@ public class Circle extends SimpleShapeBase {
     }
 
     @Override
-    public void resize(int factor) {
-        this.diameter *= factor;
+    public void resize(int amount) {
+        this.diameter += amount;
     }
 
     @Override

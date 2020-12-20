@@ -1,7 +1,7 @@
 package animatedfigures.ui.shapes.decorators;
 
-import animatedfigures.ui.shapes.Rectangle;
-import animatedfigures.ui.shapes.base.ShapeGroup;
+import animatedfigures.ui.shapes.ShapeGroup;
+import animatedfigures.ui.shapes.impl.Rectangle;
 
 import java.awt.*;
 

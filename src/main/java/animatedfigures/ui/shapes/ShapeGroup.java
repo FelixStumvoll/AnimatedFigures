@@ -1,4 +1,4 @@
-package animatedfigures.ui.shapes.base;
+package animatedfigures.ui.shapes;
 
 import animatedfigures.ui.visitor.Visitable;
 
@@ -22,8 +22,8 @@ public interface ShapeGroup extends Shape, Visitable {
     }
 
     @Override
-    default void resize(int factor) {
-        this.getShapes().forEach(shape -> shape.resize(factor));
+    default void resize(int amount) {
+        this.getShapes().forEach(shape -> shape.resize(amount));
     }
 
     @Override

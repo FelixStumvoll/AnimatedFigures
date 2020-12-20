@@ -1,7 +1,7 @@
-package animatedfigures.ui.shapes;
+package animatedfigures.ui.shapes.impl.base;
 
-import animatedfigures.ui.shapes.base.Shape;
-import animatedfigures.ui.shapes.base.ShapeGroup;
+import animatedfigures.ui.shapes.Shape;
+import animatedfigures.ui.shapes.ShapeGroup;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,8 @@
 package animatedfigures.ui.figures;
 
-import animatedfigures.ui.shapes.Circle;
-import animatedfigures.ui.shapes.ShapeGroupBase;
-import animatedfigures.ui.visitor.FigureVisitor;
+import animatedfigures.ui.shapes.impl.Circle;
+import animatedfigures.ui.shapes.impl.base.ShapeGroupBase;
+import animatedfigures.ui.visitor.ShapeGroupVisitor;
 
 import java.awt.*;
 
@@ -16,7 +16,7 @@ public class ThingB extends ShapeGroupBase {
     }
 
     @Override
-    public void accept(FigureVisitor figureVisitor) {
-        figureVisitor.visit(this);
+    public void accept(ShapeGroupVisitor shapeGroupVisitor) {
+        shapeGroupVisitor.visit(this);
     }
 }

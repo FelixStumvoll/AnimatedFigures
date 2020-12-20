@@ -1,9 +1,9 @@
-package animatedfigures.ui.shapes.base;
+package animatedfigures.ui.shapes;
 
 import animatedfigures.ui.Drawable;
 
 public interface Shape extends Drawable {
-    void resize(int factor);
+    void resize(int amount);
 
     void move(int xMove, int yMove);
 
@@ -14,4 +14,5 @@ public interface Shape extends Drawable {
     int getX();
 
     int getY();
+
 }

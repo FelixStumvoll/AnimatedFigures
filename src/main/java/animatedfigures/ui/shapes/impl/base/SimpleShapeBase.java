@@ -1,7 +1,7 @@
-package animatedfigures.ui.shapes;
+package animatedfigures.ui.shapes.impl.base;
 
-import animatedfigures.ui.shapes.base.Shape;
-import animatedfigures.ui.shapes.base.SimpleShape;
+import animatedfigures.ui.shapes.Shape;
+import animatedfigures.ui.shapes.SimpleShape;
 
 import java.awt.*;
 
@@ -48,10 +48,12 @@ public abstract class SimpleShapeBase implements SimpleShape, Shape {
         this.y = value;
     }
 
+    @Override
     public boolean isFill() {
         return this.fill;
     }
 
+    @Override
     public void setFill(boolean fill) {
         this.fill = fill;
     }

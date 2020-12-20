@@ -1,6 +1,6 @@
 package animatedfigures.util;
 
-import animatedfigures.ui.shapes.base.Shape;
+import animatedfigures.ui.shapes.Shape;
 
 import java.util.Comparator;
 

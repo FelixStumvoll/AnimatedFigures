@@ -2,11 +2,12 @@ package animatedfigures.ui;
 
 import animatedfigures.ui.figures.ThingA;
 import animatedfigures.ui.figures.ThingB;
-import animatedfigures.ui.shapes.base.ShapeGroup;
 import animatedfigures.ui.shapes.decorators.BackgroundDecorator;
 import animatedfigures.ui.shapes.decorators.BorderDecorator;
-import animatedfigures.ui.visitor.AnimationVisitor;
-import animatedfigures.ui.visitor.FigureVisitor;
+import animatedfigures.ui.shapes.impl.AnimatedShapeGroup;
+import animatedfigures.ui.visitor.impl.FillFlipVisitor;
+import animatedfigures.ui.visitor.impl.MoveVisitor;
+import animatedfigures.ui.visitor.impl.ResizeVisitor;
 import animatedfigures.util.Pair;
 
 import javax.swing.*;
@@ -18,14 +19,21 @@ import static animatedfigures.util.ThreadUtil.sleep;
 
 public class MainPanel extends JPanel implements Drawable {
 
-    private final List<ShapeGroup> figures = new ArrayList<>();
-    FigureVisitor animator = new AnimationVisitor();
+    private final List<AnimatedShapeGroup> figures = new ArrayList<>();
     private Thread animationThread;
 
     public MainPanel(Pair<Integer, Integer> size) {
         this.setSize(size.first(), size.second());
-        this.figures.add(new BackgroundDecorator(new ThingA(50, 50), Color.RED));
-        this.figures.add(new BorderDecorator(new ThingB(100, 100), Color.BLACK));
+        this.figures.add(
+                new AnimatedShapeGroup(
+                        new BackgroundDecorator(new ThingA(50, 50), Color.RED),
+                        new MoveVisitor(0, 100),
+                        new FillFlipVisitor()
+                ));
+        this.figures.add(new AnimatedShapeGroup(
+                new BorderDecorator(new ThingB(100, 100), Color.magenta),
+                new ResizeVisitor(10, 50, 1),
+                new FillFlipVisitor()));
         this.setVisible(true);
     }
 
@@ -38,9 +46,9 @@ public class MainPanel extends JPanel implements Drawable {
     public void startAnimations() {
         this.animationThread = new Thread(() -> {
             while (!Thread.interrupted()) {
-                this.figures.forEach(f -> f.accept(this.animator));
+                this.figures.forEach(AnimatedShapeGroup::animate);
                 this.repaint();
-                sleep(100);
+                sleep(200);
             }
         });
 

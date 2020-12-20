@@ -1,5 +1,5 @@
 package animatedfigures.ui.visitor;
 
 public interface Visitable {
-    void accept(FigureVisitor figureVisitor);
+    void accept(ShapeGroupVisitor shapeGroupVisitor);
 }

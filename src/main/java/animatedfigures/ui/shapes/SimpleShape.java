@@ -1,4 +1,4 @@
-package animatedfigures.ui.shapes.base;
+package animatedfigures.ui.shapes;
 
 import java.awt.*;
 
@@ -16,7 +16,7 @@ public interface SimpleShape extends Shape {
     void setX(int value);
 
     void setY(int value);
-    
+
     boolean isFill();
 
     void setFill(boolean fill);

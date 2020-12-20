@@ -1,9 +1,9 @@
 package animatedfigures.ui.figures;
 
 import animatedfigures.ui.Drawable;
-import animatedfigures.ui.shapes.Circle;
-import animatedfigures.ui.shapes.ShapeGroupBase;
-import animatedfigures.ui.visitor.FigureVisitor;
+import animatedfigures.ui.shapes.impl.Circle;
+import animatedfigures.ui.shapes.impl.base.ShapeGroupBase;
+import animatedfigures.ui.visitor.ShapeGroupVisitor;
 import animatedfigures.ui.visitor.Visitable;
 
 import java.awt.*;
@@ -17,7 +17,7 @@ public class ThingA extends ShapeGroupBase implements Visitable, Drawable {
     }
 
     @Override
-    public void accept(FigureVisitor figureVisitor) {
-        figureVisitor.visit(this);
+    public void accept(ShapeGroupVisitor shapeGroupVisitor) {
+        shapeGroupVisitor.visit(this);
     }
 }

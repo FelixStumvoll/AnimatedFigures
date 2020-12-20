@@ -1,8 +1,8 @@
 package animatedfigures.ui.shapes.decorators;
 
-import animatedfigures.ui.shapes.base.Shape;
-import animatedfigures.ui.shapes.base.ShapeGroup;
-import animatedfigures.ui.visitor.FigureVisitor;
+import animatedfigures.ui.shapes.Shape;
+import animatedfigures.ui.shapes.ShapeGroup;
+import animatedfigures.ui.visitor.ShapeGroupVisitor;
 
 import java.awt.*;
 import java.util.List;
@@ -35,8 +35,8 @@ public abstract class ShapeDecorator implements ShapeGroup {
     }
 
     @Override
-    public void resize(int factor) {
-        this.shapeGroup.resize(factor);
+    public void resize(int amount) {
+        this.shapeGroup.resize(amount);
     }
 
     @Override
@@ -45,8 +45,8 @@ public abstract class ShapeDecorator implements ShapeGroup {
     }
 
     @Override
-    public void accept(FigureVisitor figureVisitor) {
-        this.shapeGroup.accept(figureVisitor);
+    public void accept(ShapeGroupVisitor shapeGroupVisitor) {
+        this.shapeGroup.accept(shapeGroupVisitor);
     }
 
     @Override
