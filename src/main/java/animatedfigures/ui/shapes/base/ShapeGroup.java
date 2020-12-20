@@ -1,6 +1,6 @@
 package animatedfigures.ui.shapes.base;
 
-import animatedfigures.core.Visitable;
+import animatedfigures.ui.visitor.Visitable;
 
 import java.awt.*;
 import java.util.List;
@@ -35,7 +35,7 @@ public interface ShapeGroup extends Shape, Visitable {
     default int getWidth() {
         return this.getShapes()
                 .stream()
-                .map(Shape::getX)
+                .map(s -> s.getX() + s.getWidth())
                 .max(Integer::compare)
                 .orElse(0)
                 - this.getX();
@@ -45,7 +45,7 @@ public interface ShapeGroup extends Shape, Visitable {
     default int getHeight() {
         return this.getShapes()
                 .stream()
-                .map(Shape::getY)
+                .map(s -> s.getY() + s.getHeight())
                 .max(Integer::compare)
                 .orElse(0)
                 - this.getY();

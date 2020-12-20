@@ -6,15 +6,21 @@ public class Rectangle extends SimpleShapeBase {
     private int width;
     private int height;
 
-    public Rectangle(Color color, int x, int y, int width, int height) {
-        super(color, x, y);
+    public Rectangle(Color color, int x, int y, int width, int height, boolean fill) {
+        super(color, x, y, fill);
         this.width = width;
         this.height = height;
     }
 
     @Override
     public void draw(Graphics g) {
-        g.drawRect(this.getX(), this.getY(), this.width, this.height);
+        g.setColor(this.getColor());
+        if (this.isFill()) {
+            g.fillRect(this.getX(), this.getY(), this.width, this.height);
+        } else {
+            g.drawRect(this.getX(), this.getY(), this.width, this.height);
+        }
+
     }
 
     @Override

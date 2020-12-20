@@ -7,11 +7,15 @@ import java.awt.*;
 
 public abstract class SimpleShapeBase implements SimpleShape, Shape {
     private Color color;
+    private boolean fill;
     private int x;
     private int y;
 
-    public SimpleShapeBase(Color color, int x, int y) {
+    public SimpleShapeBase(Color color, int x, int y, boolean fill) {
         this.color = color;
+        this.x = x;
+        this.y = y;
+        this.fill = fill;
     }
 
     @Override
@@ -42,5 +46,13 @@ public abstract class SimpleShapeBase implements SimpleShape, Shape {
     @Override
     public void setY(int value) {
         this.y = value;
+    }
+
+    public boolean isFill() {
+        return this.fill;
+    }
+
+    public void setFill(boolean fill) {
+        this.fill = fill;
     }
 }

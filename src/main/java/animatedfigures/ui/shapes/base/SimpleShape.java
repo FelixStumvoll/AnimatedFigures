@@ -16,4 +16,8 @@ public interface SimpleShape extends Shape {
     void setX(int value);
 
     void setY(int value);
+    
+    boolean isFill();
+
+    void setFill(boolean fill);
 }

@@ -1,4 +1,4 @@
-package animatedfigures.core;
+package animatedfigures.ui.visitor;
 
 import animatedfigures.ui.figures.ThingA;
 import animatedfigures.ui.figures.ThingB;

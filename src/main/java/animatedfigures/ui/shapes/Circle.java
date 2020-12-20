@@ -3,34 +3,40 @@ package animatedfigures.ui.shapes;
 import java.awt.*;
 
 public class Circle extends SimpleShapeBase {
-    private int radius;
+    private int diameter;
 
-    public Circle(Color color, int x, int y, int radius) {
-        super(color, x, y);
-        this.radius = radius;
+    public Circle(Color color, int x, int y, int diameter, boolean fill) {
+        super(color, x, y, fill);
+        this.diameter = diameter;
     }
 
     @Override
     public void draw(Graphics g) {
-        g.fillOval(this.getX(), this.getY(), this.radius / 2, this.radius / 2); //TODO maybe center
+        g.setColor(this.getColor());
+        if (this.isFill()) {
+            g.fillOval(this.getX(), this.getY(), this.diameter, this.diameter);
+        } else {
+            g.drawOval(this.getX(), this.getY(), this.diameter, this.diameter);
+        }
+
     }
 
     @Override
     public void resize(int factor) {
-        this.radius *= factor;
+        this.diameter *= factor;
     }
 
     @Override
     public int getWidth() {
-        return this.radius * 2;
+        return this.diameter;
     }
 
     @Override
     public int getHeight() {
-        return this.radius * 2;
+        return this.diameter;
     }
 
-    public void setRadius(int radius) {
-        this.radius = radius;
+    public void setDiameter(int diameter) {
+        this.diameter = diameter;
     }
 }

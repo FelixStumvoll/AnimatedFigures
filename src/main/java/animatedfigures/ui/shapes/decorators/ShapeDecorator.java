@@ -1,14 +1,14 @@
 package animatedfigures.ui.shapes.decorators;
 
-import animatedfigures.core.FigureVisitor;
 import animatedfigures.ui.shapes.base.Shape;
 import animatedfigures.ui.shapes.base.ShapeGroup;
+import animatedfigures.ui.visitor.FigureVisitor;
 
 import java.awt.*;
 import java.util.List;
 
 public abstract class ShapeDecorator implements ShapeGroup {
-    private final ShapeGroup shapeGroup;
+    protected final ShapeGroup shapeGroup;
 
     protected ShapeDecorator(ShapeGroup shapeGroup) {
         this.shapeGroup = shapeGroup;
