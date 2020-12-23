@@ -1,55 +1,52 @@
 package animatedfigures.ui.shapes.decorators;
 
 import animatedfigures.ui.shapes.Shape;
-import animatedfigures.ui.shapes.ShapeGroup;
 import animatedfigures.ui.visitor.ShapeVisitor;
 
-import java.util.List;
+public abstract class ShapeDecorator implements Shape {
+    protected final Shape shape;
 
-public abstract class ShapeDecorator implements ShapeGroup {
-    protected final ShapeGroup shapeGroup;
-
-    protected ShapeDecorator(ShapeGroup shapeGroup) {
-        this.shapeGroup = shapeGroup;
+    protected ShapeDecorator(Shape shape) {
+        this.shape = shape;
     }
 
-    @Override
-    public List<Shape> getShapes() {
-        return this.shapeGroup.getShapes();
-    }
-    
     @Override
     public void resize(int amount) {
-        this.shapeGroup.resize(amount);
+        this.shape.resize(amount);
     }
 
     @Override
     public void move(int xMove, int yMove) {
-        this.shapeGroup.move(xMove, yMove);
+        this.shape.move(xMove, yMove);
     }
 
     @Override
     public void accept(ShapeVisitor shapeVisitor) {
-        this.shapeGroup.accept(shapeVisitor);
+        this.shape.accept(shapeVisitor);
     }
 
     @Override
     public int getWidth() {
-        return this.shapeGroup.getWidth();
+        return this.shape.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return this.shapeGroup.getHeight();
+        return this.shape.getHeight();
     }
 
     @Override
     public int getX() {
-        return this.shapeGroup.getX();
+        return this.shape.getX();
     }
 
     @Override
     public int getY() {
-        return this.shapeGroup.getY();
+        return this.shape.getY();
+    }
+
+    @Override
+    public void setSize(int amount) {
+        this.shape.setSize(amount);
     }
 }

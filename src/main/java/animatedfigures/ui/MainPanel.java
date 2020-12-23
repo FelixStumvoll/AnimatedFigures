@@ -1,11 +1,10 @@
 package animatedfigures.ui;
 
-import animatedfigures.ui.figures.ThingA;
-import animatedfigures.ui.figures.ThingB;
+import animatedfigures.ui.figures.FigureA;
+import animatedfigures.ui.figures.FigureB;
 import animatedfigures.ui.shapes.decorators.BackgroundDecorator;
 import animatedfigures.ui.shapes.decorators.BorderDecorator;
-import animatedfigures.ui.shapes.impl.AnimatedShapeGroup;
-import animatedfigures.ui.visitor.impl.FillFlipVisitor;
+import animatedfigures.ui.visitor.impl.FillToggleVisitor;
 import animatedfigures.ui.visitor.impl.MoveVisitor;
 import animatedfigures.ui.visitor.impl.ResizeVisitor;
 import animatedfigures.ui.visitor.impl.RotateVisitor;
@@ -18,27 +17,27 @@ import static animatedfigures.util.ThreadUtil.sleep;
 
 public class MainPanel extends JPanel {
 
-    private final List<AnimatedShapeGroup> figures;
+    private final List<AnimatedShape> figures;
     private Thread animationThread;
 
     public MainPanel(int width, int height) {
         this.setSize(width, height);
         this.figures = List.of(
-                new AnimatedShapeGroup(
-                        new BackgroundDecorator(new ThingA(60, 50), Color.RED),
-                        new MoveVisitor(0, 500, 5),
-                        new FillFlipVisitor(),
+                new AnimatedShape(
+                        new BackgroundDecorator(new FigureA(50, 100), Color.RED),
+                        new MoveVisitor(0, 700, 5),
+                        new FillToggleVisitor(),
                         new RotateVisitor()
                 ),
-                new AnimatedShapeGroup(
-                        new ThingB(400, 250),
+                new AnimatedShape(
+                        new FigureB(400, 250),
                         new RotateVisitor(),
                         new ResizeVisitor(0, 150, 1, true)
                 ),
-                new AnimatedShapeGroup(
-                        new BorderDecorator(new ThingB(100, 250), Color.magenta),
+                new AnimatedShape(
+                        new BorderDecorator(new FigureB(100, 250), Color.magenta),
                         new ResizeVisitor(10, 20, 30, 40),
-                        new FillFlipVisitor()));
+                        new FillToggleVisitor()));
         this.setVisible(true);
     }
 
@@ -51,7 +50,7 @@ public class MainPanel extends JPanel {
     public void startAnimations() {
         this.animationThread = new Thread(() -> {
             while (!Thread.interrupted()) {
-                this.figures.forEach(AnimatedShapeGroup::animate);
+                this.figures.forEach(AnimatedShape::animate);
                 this.repaint();
                 sleep(200);
             }

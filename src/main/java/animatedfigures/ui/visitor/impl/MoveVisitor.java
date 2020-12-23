@@ -1,7 +1,7 @@
 package animatedfigures.ui.visitor.impl;
 
-import animatedfigures.ui.figures.ThingA;
-import animatedfigures.ui.figures.ThingB;
+import animatedfigures.ui.figures.FigureA;
+import animatedfigures.ui.figures.FigureB;
 import animatedfigures.ui.shapes.Shape;
 import animatedfigures.ui.shapes.impl.Circle;
 import animatedfigures.ui.shapes.impl.Rectangle;
@@ -33,13 +33,13 @@ public class MoveVisitor implements ShapeVisitor {
     }
 
     @Override
-    public void visit(ThingA thingA) {
-        this.moveShape(thingA);
+    public void visit(FigureA figureA) {
+        this.moveShape(figureA);
     }
 
     @Override
-    public void visit(ThingB thingB) {
-        this.moveShape(thingB);
+    public void visit(FigureB figureB) {
+        this.moveShape(figureB);
     }
 
     @Override

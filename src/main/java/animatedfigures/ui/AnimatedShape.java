@@ -1,6 +1,6 @@
-package animatedfigures.ui.shapes.impl;
+package animatedfigures.ui;
 
-import animatedfigures.ui.shapes.ShapeGroup;
+import animatedfigures.ui.shapes.Shape;
 import animatedfigures.ui.visitor.ShapeVisitor;
 import animatedfigures.ui.visitor.impl.DrawVisitor;
 import animatedfigures.ui.visitor.impl.ResizeVisitor;
@@ -9,18 +9,19 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class AnimatedShapeGroup {
-    private final ShapeGroup shapeGroup;
+public class AnimatedShape {
+    private final animatedfigures.ui.shapes.Shape shape;
     private final List<ShapeVisitor> shapeVisitors;
+    private final DrawVisitor drawVisitor = new DrawVisitor();
 
-    public AnimatedShapeGroup(ShapeGroup shapeGroup, ShapeVisitor... shapeVisitors) {
-        this.shapeGroup = shapeGroup;
+    public AnimatedShape(Shape shape, ShapeVisitor... shapeVisitors) {
+        this.shape = shape;
         this.shapeVisitors = Arrays.asList(shapeVisitors);
     }
 
     public void animate() {
         this.shapeVisitors.forEach(v -> {
-            this.shapeGroup.accept(v);
+            this.shape.accept(v);
             if (v instanceof ResizeVisitor) {
                 ((ResizeVisitor) v).update(ResizeVisitor::nextIndex);
             }
@@ -28,6 +29,7 @@ public class AnimatedShapeGroup {
     }
 
     public void draw(Graphics g) {
-        this.shapeGroup.accept(new DrawVisitor(g));
+        this.drawVisitor.setG(g);
+        this.shape.accept(this.drawVisitor);
     }
 }

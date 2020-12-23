@@ -8,7 +8,7 @@ import java.awt.event.WindowListener;
 
 public class App implements Runnable {
     public static void main(String[] args) {
-        var width = 500;
+        var width = 700;
         var height = 500;
         var frame = new JFrame("Animated Figures");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -8,7 +8,7 @@ import animatedfigures.ui.visitor.ShapeVisitor;
 import java.awt.*;
 import java.util.List;
 
-public class ThingB extends ShapeGroupBase {
+public class FigureB extends ShapeGroupBase {
 
     private final Circle red;
     private final Circle blue;
@@ -20,7 +20,7 @@ public class ThingB extends ShapeGroupBase {
         return List.of(this.red, this.blue, this.green, this.yellow);
     }
 
-    public ThingB(int x, int y) {
+    public FigureB(int x, int y) {
         var diameter = 20;
         this.red = new Circle(Color.RED, x, y, diameter, true);
         this.blue = new Circle(Color.BLUE, x + 50, y + 50, diameter, true);

@@ -1,14 +1,14 @@
 package animatedfigures.ui.shapes;
 
-import animatedfigures.ui.visitor.Visitable;
+import animatedfigures.ui.visitor.ShapeVisitor;
 
-public interface Shape extends Visitable {
+public interface Shape {
     void resize(int amount);
 
     void setSize(int amount);
 
     void move(int xMove, int yMove);
-    
+
     int getWidth();
 
     int getHeight();
@@ -17,4 +17,5 @@ public interface Shape extends Visitable {
 
     int getY();
 
+    void accept(ShapeVisitor shapeVisitor);
 }

@@ -1,10 +1,8 @@
 package animatedfigures.ui.visitor.impl;
 
-import animatedfigures.ui.figures.ThingA;
-import animatedfigures.ui.figures.ThingB;
+import animatedfigures.ui.figures.FigureA;
+import animatedfigures.ui.figures.FigureB;
 import animatedfigures.ui.shapes.Shape;
-import animatedfigures.ui.shapes.ShapeGroup;
-import animatedfigures.ui.shapes.SimpleShape;
 import animatedfigures.ui.shapes.impl.Circle;
 import animatedfigures.ui.shapes.impl.Rectangle;
 import animatedfigures.ui.visitor.ShapeVisitor;
@@ -40,36 +38,28 @@ public class ResizeVisitor implements ShapeVisitor, StatefulVisitor<ResizeVisito
         }
     }
 
-    private void visitShapeGroup(ShapeGroup shapeGroup) {
-        this.resizeShape(shapeGroup);
-    }
-
-    private void visitSimpleShape(SimpleShape shape) {
-        this.resizeShape(shape);
-    }
-
     private void resizeShape(Shape shape) {
         shape.setSize(this.steps[this.currentIndex]);
     }
 
     @Override
-    public void visit(ThingA thingA) {
-        this.visitShapeGroup(thingA);
+    public void visit(FigureA figureA) {
+        this.resizeShape(figureA);
     }
 
     @Override
-    public void visit(ThingB thingB) {
-        this.visitShapeGroup(thingB);
+    public void visit(FigureB figureB) {
+        this.resizeShape(figureB);
     }
 
     @Override
     public void visit(Circle circle) {
-        this.visitSimpleShape(circle);
+        this.resizeShape(circle);
     }
 
     @Override
     public void visit(Rectangle rectangle) {
-        this.visitSimpleShape(rectangle);
+        this.resizeShape(rectangle);
     }
 
     public void nextIndex() {
