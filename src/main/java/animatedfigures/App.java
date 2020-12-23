@@ -1,7 +1,6 @@
 package animatedfigures;
 
 import animatedfigures.ui.MainPanel;
-import animatedfigures.util.Pair;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -9,14 +8,14 @@ import java.awt.event.WindowListener;
 
 public class App implements Runnable {
     public static void main(String[] args) {
-        var size = Pair.of(500, 500);
+        var width = 500;
+        var height = 500;
         var frame = new JFrame("Animated Figures");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        var mainPanel = new MainPanel(size);
+        var mainPanel = new MainPanel(width, height);
         frame.getContentPane().add(mainPanel);
         mainPanel.startAnimations();
-        frame.setSize(size.first(), size.second());
-        frame.setResizable(false);
+        frame.setSize(width, height);
         frame.setVisible(true);
 
         frame.addWindowListener(new WindowListener() {

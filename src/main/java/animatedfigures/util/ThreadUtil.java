@@ -5,6 +5,7 @@ public class ThreadUtil {
         try {
             Thread.sleep(duration);
         } catch (InterruptedException ignored) {
+            //Checked exception suck
         }
     }
 }

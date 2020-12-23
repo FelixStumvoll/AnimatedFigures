@@ -12,6 +12,11 @@ public interface SimpleShape extends Shape {
         this.setX(this.getX() + xMove);
         this.setY(this.getY() + yMove);
     }
+    
+    default void moveTo(int x, int y) {
+        this.setX(x);
+        this.setY(y);
+    }
 
     void setX(int value);
 

@@ -1,21 +1,10 @@
 package animatedfigures.ui.shapes;
 
-import animatedfigures.ui.visitor.Visitable;
-
-import java.awt.*;
 import java.util.List;
 
-public interface ShapeGroup extends Shape, Visitable {
+public interface ShapeGroup extends Shape {
     List<Shape> getShapes();
-
-    default void addShape(Shape shape) {
-        this.getShapes().add(shape);
-    }
-
-    default void removeShape(Shape shape) {
-        this.getShapes().remove(shape);
-    }
-
+    
     @Override
     default void move(int xMove, int yMove) {
         this.getShapes().forEach(shape -> shape.move(xMove, yMove));
@@ -24,11 +13,6 @@ public interface ShapeGroup extends Shape, Visitable {
     @Override
     default void resize(int amount) {
         this.getShapes().forEach(shape -> shape.resize(amount));
-    }
-
-    @Override
-    default void draw(Graphics g) {
-        this.getShapes().forEach(shape -> shape.draw(g));
     }
 
     @Override
@@ -67,5 +51,10 @@ public interface ShapeGroup extends Shape, Visitable {
                 .map(Shape::getY)
                 .min(Integer::compare)
                 .orElse(0);
+    }
+
+    @Override
+    default void setSize(int amount) {
+        this.getShapes().forEach(s -> s.setSize(amount));
     }
 }

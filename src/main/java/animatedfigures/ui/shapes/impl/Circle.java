@@ -1,6 +1,7 @@
 package animatedfigures.ui.shapes.impl;
 
 import animatedfigures.ui.shapes.impl.base.SimpleShapeBase;
+import animatedfigures.ui.visitor.ShapeVisitor;
 
 import java.awt.*;
 
@@ -13,19 +14,13 @@ public class Circle extends SimpleShapeBase {
     }
 
     @Override
-    public void draw(Graphics g) {
-        g.setColor(this.getColor());
-        if (this.isFill()) {
-            g.fillOval(this.getX(), this.getY(), this.diameter, this.diameter);
-        } else {
-            g.drawOval(this.getX(), this.getY(), this.diameter, this.diameter);
-        }
-
+    public void resize(int amount) {
+        this.diameter += amount;
     }
 
     @Override
-    public void resize(int amount) {
-        this.diameter += amount;
+    public void setSize(int amount) {
+        this.diameter = amount;
     }
 
     @Override
@@ -38,7 +33,12 @@ public class Circle extends SimpleShapeBase {
         return this.diameter;
     }
 
-    public void setDiameter(int diameter) {
-        this.diameter = diameter;
+    public int getDiameter() {
+        return this.diameter;
+    }
+
+    @Override
+    public void accept(ShapeVisitor shapeVisitor) {
+        shapeVisitor.visit(this);
     }
 }

@@ -1,6 +1,7 @@
 package animatedfigures.ui.shapes.impl;
 
 import animatedfigures.ui.shapes.impl.base.SimpleShapeBase;
+import animatedfigures.ui.visitor.ShapeVisitor;
 
 import java.awt.*;
 
@@ -15,20 +16,15 @@ public class Rectangle extends SimpleShapeBase {
     }
 
     @Override
-    public void draw(Graphics g) {
-        g.setColor(this.getColor());
-        if (this.isFill()) {
-            g.fillRect(this.getX(), this.getY(), this.width, this.height);
-        } else {
-            g.drawRect(this.getX(), this.getY(), this.width, this.height);
-        }
-
-    }
-
-    @Override
     public void resize(int amount) {
         this.width += amount;
         this.height += amount;
+    }
+
+    @Override
+    public void setSize(int amount) {
+        this.height = amount;
+        this.width = amount;
     }
 
     @Override
@@ -47,5 +43,10 @@ public class Rectangle extends SimpleShapeBase {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    @Override
+    public void accept(ShapeVisitor shapeVisitor) {
+        shapeVisitor.visit(this);
     }
 }

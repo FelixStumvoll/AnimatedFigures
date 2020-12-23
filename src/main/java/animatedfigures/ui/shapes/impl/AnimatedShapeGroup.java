@@ -1,28 +1,33 @@
 package animatedfigures.ui.shapes.impl;
 
-import animatedfigures.ui.Drawable;
 import animatedfigures.ui.shapes.ShapeGroup;
-import animatedfigures.ui.visitor.ShapeGroupVisitor;
+import animatedfigures.ui.visitor.ShapeVisitor;
+import animatedfigures.ui.visitor.impl.DrawVisitor;
+import animatedfigures.ui.visitor.impl.ResizeVisitor;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class AnimatedShapeGroup implements Drawable {
+public class AnimatedShapeGroup {
     private final ShapeGroup shapeGroup;
-    private final List<ShapeGroupVisitor> shapeGroupVisitors;
+    private final List<ShapeVisitor> shapeVisitors;
 
-    public AnimatedShapeGroup(ShapeGroup shapeGroup, ShapeGroupVisitor... shapeGroupVisitors) {
+    public AnimatedShapeGroup(ShapeGroup shapeGroup, ShapeVisitor... shapeVisitors) {
         this.shapeGroup = shapeGroup;
-        this.shapeGroupVisitors = Arrays.asList(shapeGroupVisitors);
+        this.shapeVisitors = Arrays.asList(shapeVisitors);
     }
 
     public void animate() {
-        this.shapeGroupVisitors.forEach(v -> v.visit(this.shapeGroup));
+        this.shapeVisitors.forEach(v -> {
+            this.shapeGroup.accept(v);
+            if (v instanceof ResizeVisitor) {
+                ((ResizeVisitor) v).update(ResizeVisitor::nextIndex);
+            }
+        });
     }
 
-    @Override
     public void draw(Graphics g) {
-        this.shapeGroup.draw(g);
+        this.shapeGroup.accept(new DrawVisitor(g));
     }
 }

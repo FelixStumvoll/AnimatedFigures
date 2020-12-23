@@ -1,12 +1,14 @@
 package animatedfigures.ui.shapes;
 
-import animatedfigures.ui.Drawable;
+import animatedfigures.ui.visitor.Visitable;
 
-public interface Shape extends Drawable {
+public interface Shape extends Visitable {
     void resize(int amount);
 
-    void move(int xMove, int yMove);
+    void setSize(int amount);
 
+    void move(int xMove, int yMove);
+    
     int getWidth();
 
     int getHeight();
