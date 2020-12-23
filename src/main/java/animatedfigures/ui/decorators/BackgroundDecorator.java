@@ -1,4 +1,4 @@
-package animatedfigures.ui.shapes.decorators;
+package animatedfigures.ui.decorators;
 
 import animatedfigures.ui.shapes.Shape;
 import animatedfigures.ui.shapes.impl.Rectangle;
@@ -6,11 +6,10 @@ import animatedfigures.ui.visitor.ShapeVisitor;
 
 import java.awt.*;
 
-
-public class BorderDecorator extends ShapeDecorator {
+public class BackgroundDecorator extends ShapeDecorator {
     private final Color color;
 
-    public BorderDecorator(Shape shape, Color color) {
+    public BackgroundDecorator(Shape shape, Color color) {
         super(shape);
         this.color = color;
     }
@@ -22,7 +21,7 @@ public class BorderDecorator extends ShapeDecorator {
                 this.shape.getY() - 5,
                 this.shape.getWidth() + 10,
                 this.shape.getHeight() + 10,
-                false).accept(shapeVisitor);
+                true).accept(shapeVisitor);
         super.accept(shapeVisitor);
     }
 }

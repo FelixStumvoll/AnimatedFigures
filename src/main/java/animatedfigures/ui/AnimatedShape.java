@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AnimatedShape {
-    private final animatedfigures.ui.shapes.Shape shape;
+    private final Shape shape;
     private final List<ShapeVisitor> shapeVisitors;
     private final DrawVisitor drawVisitor = new DrawVisitor();
 

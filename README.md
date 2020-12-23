@@ -12,24 +12,28 @@
 
 ## Implementation
 
-The implementation of *Animated Figures* provides a way to animate shapes. It is split into four parts, [UI](#ui)
-, [Shapes](#shapes), [Figures](#figures)
+The implementation of *Animated Figures* provides a way to animate different figures with various animations. The
+implementation can be split up into the five parts, [UI](#ui)
+, [Shapes](#shapes), [Figures](#figures), [Decorators](#decorators)
 and [Visitors](#visitors).
 
 ### UI
 
-The UI part of the implementation consists solely of a `MainPane`. This pane stores and displays all the shapes. It also provides
-a `startAnimation` method, which starts the animation loop in its own thread. To simplify the application a
-class `AnimatedShape` was added. This class stores a `Shape` and a list of visitors. With an `animate` method the shape is animated by calling
-the `accept` method of the shape with every visitor of the list. With a `draw` method the shape can be drawn by calling the `accept` method of
-the shape with a `DrawVisitor` (see [Draw Visitor](#draw-visitor)).
+The UI part of the implementation consists solely of a `MainPane`. This pane stores and displays all the shapes. It also
+provides a `startAnimation` method, which starts the animation loop in its own thread. To simplify the application a
+class `AnimatedShape` was added. This class stores a `Shape` and a list of visitors. With an `animate` method the shape
+is animated by calling the `accept` method of the shape with every visitor of the list. With a `draw` method the shape
+can be drawn by calling the `accept` method of the shape with a `DrawVisitor` (see [Draw Visitor](#draw-visitor)).
 
 ### Shapes
 
-To abstract over the shapes of the implementation an interface `Shape` as well as two subinterfaces `ShapeGroup` and `SimpleShape`
-were implemented. A `ShapeGroup` can contain multiple Shapes and `SimpleShape` models a
-concrete shape like a circle or a rectangle (coincidentally both of those shapes were implemented as an implementation of `SimpleShape`). Both `ShapeGroup` and `SimpleShape` have an abstract base class `ShapeGroupBase` and `SimpleShapeBase`
-which implements method which should be the same for all implementations (e.g. getter/setter for the position).
+A `Shape` is the basic building block of this application and describes the different geometric shapes which the
+application uses to display the different figures. It is defined as an interface `Shape` and has two
+subinterfaces `ShapeGroup` and `SimpleShape`. A `ShapeGroup` can contain multiple `Shapes` and `SimpleShape` models a
+concrete shape like a circle, or a rectangle (which coincidentally are the two implementations of `SimpleShape`
+available in the application). `SimpleShape` has an abstract base class `SimpleShapeBase`
+which implements method which should be the same for all implementations (getter/setter for the position, color,
+isFilled).
 
 The three interfaces provide the following operations. Interesting is, that the drawing of the shapes is not implemented
 in the shape itself but rather with a visitor (see [Visitors](#visitors)).
@@ -55,12 +59,12 @@ in the shape itself but rather with a visitor (see [Visitors](#visitors)).
 
 ### Figures
 
-For this implementation two figures strikingly named [FigureA](#figure-a) and [FigureB](#figure-b) were implemented.
-Both implement the `ShapeGroup` interface.
+A figures are a concrete implementation of `ShapeGroup`. The implementation consists of two figures
+named [FigureA](#figure-a) and [FigureB](#figure-b).
 
 #### Figure A
 
-`FigureA` consists of 5 green circles side by side and every other circle is filled.
+`FigureA` consists of 5 green circles side by side. Every other circle is filled.
 
 ![FigureA](doc/images/figure_a.png)
 
@@ -74,26 +78,26 @@ Both implement the `ShapeGroup` interface.
 
 The implementation provides two decorators `BackgroundDecorator` and `BorderDecorator`. They both extend a
 superclass `ShapeDecorator` which implements the decorator pattern for the `Shape`. This means not only a `ShapeGroup`
-can be decorated but also a `SimpleShape`. This was not used in the implementation of `FigureA` or `FigureB`. It could have been
-though...but it wasn't.
+can be decorated but also a `SimpleShape`. Although in the implementation only `FigureA` and `FigureB` were decorated.
 
 #### Background Decorator
 
-The `FigureA` decorated with a `BackgroundDecorator` looks like this.
+The `FigureA` decorated with a `BackgroundDecorator` can be seen in the following image.
 
 ![BGDecorator](/doc/images/figure_a_decorated.png)
 
 #### Border Decorator
 
-The `FigureB` decorated with a `BorderDecorator` looks like this.
+The `FigureB` decorated with a `BorderDecorator` can be seen in the following image.
 
 ![BGDecorator](/doc/images/figure_b_decorated.png)
 
 ### Visitors
 
-The visitor pattern was used in this implementation to provide the possibility to implement different operations on all
-available shapes. For this an interface `ShapeVisitor` was implemented which provides a `visit` method, which
-accepts `FigureA`, `FigureB`, `Circle` and `Rectangle`. This allows to customize the implementation for each figure.
+The visitor pattern was used in this implementation to make it possible to implement different operations on all
+available shapes without modifying the shape itself. For this an interface `ShapeVisitor` was implemented which provides
+a `visit` method, which accepts `FigureA`, `FigureB`, `Circle` and `Rectangle`. This allows to customize the
+implementation for each figure.
 
 The implementation provides the following five concrete implementations for this interface.
 
@@ -103,7 +107,8 @@ This visitor is especially interesting, since it separates the drawing logic fro
 adapt it to an even more outdated UI framework like AWT.
 
 In this implementation `Circle` and `Rectangle` are drawn with their respective `awt.Graphics` methods `drawOval`
-and `drawRect` and `ThingA` and `ThingB` are drawn by passing the visitor to the `accept` method of each sub shape.
+and `drawRect` and `ThingA` and `ThingB` are drawn by passing the drawing visitor to the `accept` method of each child
+shape.
 
 This is done for most visitors where there is no special implementation for `ThingA` and `ThingB`.
 
@@ -114,8 +119,9 @@ itself to the children of the group.
 
 #### Move Visitor
 
-The `MoveVisitor` moves a shape on the axis. The outer bounds as well as the amount moved can be configured. Since every
-shape has a `move` method it calls this method regardless of the concrete shape type.
+The `MoveVisitor` moves a shape on the x-axis. The bounds on which the shape turns, as well as the amount moved in each
+animation step can be configured. Since every shape has a `move` method it calls this method regardless of the concrete
+shape type.
 
 #### Resize Visitor
 

@@ -1,14 +1,14 @@
 package animatedfigures.ui.figures;
 
 import animatedfigures.ui.shapes.Shape;
+import animatedfigures.ui.shapes.ShapeGroup;
 import animatedfigures.ui.shapes.impl.Circle;
-import animatedfigures.ui.shapes.impl.base.ShapeGroupBase;
 import animatedfigures.ui.visitor.ShapeVisitor;
 
 import java.awt.*;
 import java.util.List;
 
-public class FigureB extends ShapeGroupBase {
+public class FigureB implements ShapeGroup {
 
     private final Circle red;
     private final Circle blue;

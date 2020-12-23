@@ -1,4 +1,4 @@
-package animatedfigures.ui.shapes.decorators;
+package animatedfigures.ui.decorators;
 
 import animatedfigures.ui.shapes.Shape;
 import animatedfigures.ui.visitor.ShapeVisitor;

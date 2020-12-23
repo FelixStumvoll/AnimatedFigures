@@ -1,9 +1,9 @@
 package animatedfigures.ui;
 
+import animatedfigures.ui.decorators.BackgroundDecorator;
+import animatedfigures.ui.decorators.BorderDecorator;
 import animatedfigures.ui.figures.FigureA;
 import animatedfigures.ui.figures.FigureB;
-import animatedfigures.ui.shapes.decorators.BackgroundDecorator;
-import animatedfigures.ui.shapes.decorators.BorderDecorator;
 import animatedfigures.ui.visitor.impl.FillToggleVisitor;
 import animatedfigures.ui.visitor.impl.MoveVisitor;
 import animatedfigures.ui.visitor.impl.ResizeVisitor;
