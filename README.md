@@ -1,5 +1,7 @@
 # Animated Figures
 
+Implementation for the *AnimatedFigures* assignment for software architectures and patterns.
+
 ## Running
 
 ### Prerequisites
