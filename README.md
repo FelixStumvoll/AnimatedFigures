@@ -68,11 +68,17 @@ named [FigureA](#figure-a) and [FigureB](#figure-b).
 
 ![FigureA](doc/images/figure_a.png)
 
+For this figure three animations are defined, moving from left to right, rotating and toggling isFilled for every
+circle.
+
 #### Figure B
 
 `FigureB` consists of 4 circle in the colors red, blue, green and yellow aligned in a diamond.
 
 ![FigureB](doc/images/figure_b.png)
+
+This figure is displayed twice once with two animations resizing and toggling of isFilled and once resizing and
+rotating.
 
 ### Decorators
 
@@ -107,10 +113,10 @@ This visitor is especially interesting, since it separates the drawing logic fro
 adapt it to an even more outdated UI framework like AWT.
 
 In this implementation `Circle` and `Rectangle` are drawn with their respective `awt.Graphics` methods `drawOval`
-and `drawRect` and `ThingA` and `ThingB` are drawn by passing the drawing visitor to the `accept` method of each child
+and `drawRect` and `FigureA` and `FigureB` are drawn by passing the drawing visitor to the `accept` method of each child
 shape.
 
-This is done for most visitors where there is no special implementation for `ThingA` and `ThingB`.
+This is done for most visitors where there is no special implementation for `FigureA` and `FigureB`.
 
 #### Fill Toggle Visitor
 
@@ -130,7 +136,7 @@ the [Move Visitor](#move-visitor), the `resize` method of the shape is called.
 
 #### Rotate Visitor
 
-This visitor was implemented to illustrate the usefulness of providing a different method for `ThingA` and `ThingB` (
+This visitor was implemented to illustrate the usefulness of providing a different method for `FigureA` and `FigureB` (
 since until now a single `visit` method for a `ShapeGroup` would have sufficed). This visitor as the name suggests
 rotates a shape.
 

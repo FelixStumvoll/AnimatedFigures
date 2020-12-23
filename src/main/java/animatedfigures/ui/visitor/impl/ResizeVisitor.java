@@ -13,12 +13,14 @@ import java.util.function.Consumer;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class ResizeVisitor implements ShapeVisitor, StatefulVisitor<ResizeVisitor> {
+public class ResizeVisitor implements ShapeVisitor, StatefulVisitor {
 
     private final int[] steps;
     private int currentIndex = 0;
+    private final Consumer<ResizeVisitor> updateFunc;
 
-    public ResizeVisitor(int... steps) {
+    public ResizeVisitor(Consumer<ResizeVisitor> updateFunc, int... steps) {
+        this.updateFunc = updateFunc;
         this.steps = steps;
     }
 
@@ -26,7 +28,8 @@ public class ResizeVisitor implements ShapeVisitor, StatefulVisitor<ResizeVisito
         return IntStream.range(lower, upper).filter(x -> x % stepSize == 0);
     }
 
-    public ResizeVisitor(int lower, int upper, int stepSize, boolean bidirectionalResizing) {
+    public ResizeVisitor(Consumer<ResizeVisitor> updateFunc, int lower, int upper, int stepSize, boolean bidirectionalResizing) {
+        this.updateFunc = updateFunc;
         if (bidirectionalResizing) {
             this.steps = Stream.concat(
                     this.getStream(lower, upper, stepSize).boxed(),
@@ -67,7 +70,7 @@ public class ResizeVisitor implements ShapeVisitor, StatefulVisitor<ResizeVisito
     }
 
     @Override
-    public void update(Consumer<ResizeVisitor> consumer) {
-        consumer.accept(this);
+    public void update() {
+        this.updateFunc.accept(this);
     }
 }

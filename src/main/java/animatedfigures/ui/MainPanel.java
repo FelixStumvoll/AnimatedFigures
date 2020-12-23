@@ -32,11 +32,11 @@ public class MainPanel extends JPanel {
                 new AnimatedShape(
                         new FigureB(400, 250),
                         new RotateVisitor(),
-                        new ResizeVisitor(0, 150, 1, true)
+                        new ResizeVisitor(ResizeVisitor::nextIndex, 0, 150, 1, true)
                 ),
                 new AnimatedShape(
                         new BorderDecorator(new FigureB(100, 250), Color.magenta),
-                        new ResizeVisitor(10, 20, 30, 40),
+                        new ResizeVisitor(ResizeVisitor::nextIndex, 10, 20, 30, 40),
                         new FillToggleVisitor()));
         this.setVisible(true);
     }

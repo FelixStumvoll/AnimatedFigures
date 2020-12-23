@@ -2,8 +2,8 @@ package animatedfigures.ui;
 
 import animatedfigures.ui.shapes.Shape;
 import animatedfigures.ui.visitor.ShapeVisitor;
+import animatedfigures.ui.visitor.StatefulVisitor;
 import animatedfigures.ui.visitor.impl.DrawVisitor;
-import animatedfigures.ui.visitor.impl.ResizeVisitor;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -22,8 +22,8 @@ public class AnimatedShape {
     public void animate() {
         this.shapeVisitors.forEach(v -> {
             this.shape.accept(v);
-            if (v instanceof ResizeVisitor) {
-                ((ResizeVisitor) v).update(ResizeVisitor::nextIndex);
+            if (v instanceof StatefulVisitor) {
+                ((StatefulVisitor) v).update();
             }
         });
     }
