@@ -15,9 +15,8 @@ Implementation for the *AnimatedFigures* assignment for software architectures a
 ## Implementation
 
 The implementation of *Animated Figures* provides a way to animate different figures with various animations. The
-implementation can be split up into the five parts, [UI](#ui)
-, [Shapes](#shapes), [Figures](#figures), [Decorators](#decorators)
-and [Visitors](#visitors).
+implementation can be split up into the five parts, the [UI](#ui) for displaying, the underlying [Shapes](#shapes) used
+in the figures, the actual [Figures](#figures) and the implemented [Decorators](#decorators) and [Visitors](#visitors).
 
 ### UI
 
